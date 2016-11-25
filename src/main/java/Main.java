@@ -133,10 +133,12 @@ public class Main {
 
     private static void loadMethodTable(String searchname, File directory) throws Exception {
 
+        //TODO strip off < from searchname
+        String trimmed = searchname.split("<", 2)[0];
 
         File newDir = directory.getParentFile();
         System.out.println("in loadMethodTable: parent directory = " + newDir);
-        String methodFile = newDir + "\\" + searchname + ".html";
+        String methodFile = newDir + "\\" + trimmed + ".html";
         File testFile = new File(methodFile);
 
         System.out.println("in loadMethodTable: filepath = " + methodFile);
@@ -155,14 +157,14 @@ public class Main {
 
                 String type = null;                       // type should be called modifier
                 String name = null;
-                String trimmed = null;
+//                String trimmed = null;
 
                 while (iterator.hasNext()) {
                     type = iterator.next().text();
                     name = iterator.next().text();
 
-                    trimmed = name.split("\\)", 2)[0];   // concept from:http://stackoverflow.com/questions/18220022/how-to-trim-a-string-after-a-specific-character-in-java
-                    trimmed = trimmed + ")";
+//                    trimmed = name.split("\\)", 2)[0];   // concept from:http://stackoverflow.com/questions/18220022/how-to-trim-a-string-after-a-specific-character-in-java
+//                    trimmed = trimmed + ")";
 
                     countMethods++;
                 }
